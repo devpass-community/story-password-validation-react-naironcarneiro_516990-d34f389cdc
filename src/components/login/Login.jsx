@@ -4,12 +4,14 @@ import "./styles.css";
 
 const initialState = {
   username: "",
-  password: ""
+  password: "",
 };
 
 export const validatePassword = (password) => {
-  // TODO
-  return false;
+  const regex = /^\d{6}$/;
+  if (regex.test(password)) {
+    return true;
+  } else return false;
 };
 
 const Login = () => {
@@ -22,7 +24,7 @@ const Login = () => {
     setState((prevState) => {
       return {
         ...prevState,
-        [name]: value
+        [name]: value,
       };
     });
   };
@@ -36,7 +38,6 @@ const Login = () => {
     );
 
     if (allFieldsEntered) {
-
       if (validatePassword(state["password"])) {
         setSuccessMsg("You have successfully logged in");
       } else {
